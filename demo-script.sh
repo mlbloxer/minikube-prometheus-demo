@@ -2,26 +2,25 @@
 
 # install xhyve driver - less resource overhead for the vm
 # https://github.com/kubernetes/minikube/blob/master/DRIVERS.md#xhyve-driver
-brew install docker-machine-driver-xhyve
+#brew install docker-machine-driver-xhyve
 
 # install minikube
 # https://github.com/kubernetes/minikube/releases
 
 # create a cluster. driver is important!
 
-minikube start --vm-driver=xhyve
+#minikube start --vm-driver=xhyve
 
 # install kubectl
 
-brew install kubectl
+#brew install kubectl
 
 # check that cluster is working
-kubectl config set-context minikube
+#kubectl config set-context minikube
 
+#kubectl get componentstatus
 
-kubectl get componentstatus
-
-kubectl cluster-info
+#kubectl cluster-info
 
 # deploy an application and a service
 # describe a namespace, deployment, and a service
@@ -36,7 +35,7 @@ kubectl get services --namespace=monitoring
 kubectl get deployments --namespace=monitoring
 
 # show the dashboard
-minikube dashboard
+#minikube dashboard
 
 # show node ports under services for prometheus. exposes
 
