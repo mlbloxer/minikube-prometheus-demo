@@ -25,14 +25,22 @@
 # deploy an application and a service
 # describe a namespace, deployment, and a service
 
-kubectl create -f monitoring-namespace.yaml
-kubectl create -f prometheus-config.yaml
-kubectl create -f prometheus-deployment.yaml
-kubectl create -f prometheus-service.yaml
+kubectl delete -f monitoring-namespace.yaml
+kubectl apply -f monitoring-namespace.yaml
+
+kubectl delete -f prometheus-config.yaml
+kubectl apply -f prometheus-config.yaml
+
+kubectl delete -f prometheus-deployment.yaml
+kubectl apply -f prometheus-deployment.yaml
+
+
+kubectl delete -f prometheus-service.yaml
+kubectl apply -f prometheus-service.yaml
 
 # view via CLI:
-kubectl get services --namespace=monitoring
-kubectl get deployments --namespace=monitoring
+#kubectl get services --namespace=monitoring
+#kubectl get deployments --namespace=monitoring
 
 # show the dashboard
 #minikube dashboard
@@ -41,7 +49,7 @@ kubectl get deployments --namespace=monitoring
 
 # show prometheus service
 
-minikube service --namespace=monitoring prometheus
+#minikube service --namespace=monitoring prometheus
 
 # click around
 # show /targets
@@ -49,11 +57,14 @@ minikube service --namespace=monitoring prometheus
 # show graph and query of container_memory_usage_bytes{kubernetes_namespace="monitoring"}
 
 # deploy grafana
-kubectl create -f grafana-deployment.yaml
-kubectl create -f grafana-service.yaml
+kubectl delete -f grafana-deployment.yaml
+kubectl apply -f grafana-deployment.yaml
+
+kubectl delete -f grafana-service.yaml
+kubectl apply -f grafana-service.yaml
 
 # show grafana
-minikube service --namespace=monitoring grafana
+#minikube service --namespace=monitoring grafana
 
 # add datasource. make sure type is prometheus http://prometheus:8080
 # describe kubernetes DNS
@@ -64,7 +75,7 @@ minikube service --namespace=monitoring grafana
 
 # lets add node metrics
 # deploy node exporter. explain daemonser
-kubectl create -f node-exporter-daemonset.yml
+#kubectl create -f node-exporter-daemonset.yml
 
 # show new target in prometheus. explain it autodiscovering the pods
 
